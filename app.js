@@ -36,7 +36,7 @@ const animateFinalScore = () => {
     }
 
     finalScoreContainer.querySelector('span').textContent = `${counter++}%`
-  }, 10)
+  }, 20)
 }
 
 form.addEventListener('submit', event => {
