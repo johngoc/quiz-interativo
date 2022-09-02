@@ -6,8 +6,13 @@ const correctAnswers = ['D', 'B', 'C', 'A']
 
 let score = 0
 
-const getUserAnswers = () => correctAnswers.map((_, index) => 
-  form[`inputQuestion${index + 1}`].value)
+const getUserAnswers = () => {
+  const userAnswers = correctAnswers.map((_, index) => {
+    return form[`inputQuestion${index + 1}`].value
+  })
+
+  return userAnswers
+}
 
 const calculateUserScore = userAnswers => {
   userAnswers.forEach((userAnswer, index) => {
@@ -36,19 +41,20 @@ const animateFinalScore = () => {
     }
 
     finalScoreContainer.querySelector('span').textContent = `${counter++}%`
-  }, 20)
+  }, 30)
 }
 
-form.addEventListener('submit', event => {
+const resetUserScore = () => {
+  score = 0
+}
 
-  if(score !== 0){
-    score = 0
-  }
-  
+
+form.addEventListener('submit', event => {
   event.preventDefault()
 
   const userAnswers = getUserAnswers()
 
+  resetUserScore()
   calculateUserScore(userAnswers)
   showFinalScore()
   animateFinalScore()
